@@ -86,6 +86,8 @@ Contributions are more than  welcome! Just keep a few things in mind:
 - C++ Resources
   - [SFML](https://www.sfml-dev.org/) and their [CMake Project Template](https://github.com/SFML/cmake-sfml-project)
     - This is what was used to get the project up and running very quickly.
+  - [eliasdaler](https://github.com/eliasdaler) and their [FetchContent Example Project](https://github.com/eliasdaler/imgui-sfml-fetchcontent)
+    - This showed me how to set up CMake to be more organized, particularly when working with many external dependencies.
   - [cplusplus.com](https://cplusplus.com)  tutorials
     - An invaluable resource to me to discover and learn how standard C++ objects work.
   - [cppreference.com](https://cppreference.com) documentation-style references
