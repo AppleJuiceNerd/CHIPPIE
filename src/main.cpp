@@ -1,10 +1,8 @@
-#include "CHIP-8/emu.h"
+#include <iostream>
 
 
 int main(int argc, char **argv) {
-	C8Emu emulator;
-	emulator.runRom(ROM(argv[1]));
-
+	std::cout << "yah.. it's rewrite time...\n";
 
 	return 0;
 }
