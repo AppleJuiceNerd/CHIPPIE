@@ -31,16 +31,16 @@ void tick(Chip8 *machine);
 /* Opcode functions */
 
 // Clear screen (00E0)
-void clear();
+void clear(Chip8 *machine);
 
 // Jump pc to memory location (1NNN)
-void jump(uint16_t dest);
+void jump(Chip8 *machine, uint16_t dest);
 
 // Loads a register with a value (6XNN)
-void loadV(uint8_t reg, uint8_t value); 
+void loadV(Chip8 *machine, uint8_t reg, uint8_t value); 
 
 // Loads index register with a value (ANNN)
-void loadI(uint16_t value);
+void loadI(Chip8 *machine, uint16_t value);
 
 // Draws a sprite to the screen (DXYN)
-void draw(uint8_t reg1, uint8_t reg2, uint8_t height);
+void draw(Chip8 *machine, uint8_t reg1, uint8_t reg2, uint8_t height);
