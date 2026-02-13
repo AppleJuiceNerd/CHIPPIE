@@ -15,6 +15,15 @@ typedef struct _Chip8 {
 } Chip8;
 
 
+/* Machine functions */
+
+// Loads a rom from a file
+void loadrom(Chip8 *machine, char *filename);
+
+// Runs a machine for a cycle
+void tick(Chip8 *machine);
+
+
 /* Opcode functions */
 
 // Clear screen (00E0)
