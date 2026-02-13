@@ -26,10 +26,21 @@ int main(int argc, char** argv) {
 
 	while(!WindowShouldClose())
 	{
+		tick(&machine);
+
 		BeginDrawing();
 		ClearBackground(off_color);
 		
-		// put draw things here
+		for(int y = 0; y < 32; y++)
+		{
+			for(int x = 0; x < 64; x++)
+			{
+				if(machine.display[positionToDisplay(x, y)])
+				{
+					DrawRectangle(x, y, res_mul, res_mul, on_color);
+				}
+			}
+		}
 
 		EndDrawing();
 	}
