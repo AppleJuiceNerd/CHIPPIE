@@ -11,10 +11,7 @@ void setupMachine(Chip8 *machine)
 	}
 
 	// Clear display
-	for(int i = 0; i < 64*32; i++)
-	{
-		machine->display[i] = 0;
-	}
+	clear(machine);
 
 	// Clear stack
 	for(int i = 0; i < 100; i++)
