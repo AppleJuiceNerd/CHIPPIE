@@ -13,3 +13,21 @@ typedef struct _Chip8 {
 	uint8_t  sound_timer;      // Sound Timer
 	uint8_t  registers[16];    // All 16 variable registers
 } Chip8;
+
+
+/* Opcode functions */
+
+// Clear screen (00E0)
+void clear();
+
+// Jump pc to memory location (1NNN)
+void jump(uint16_t dest);
+
+// Loads a register with a value (6XNN)
+void loadv(uint8_t reg, uint8_t value); 
+
+// Loads index register with a value (ANNN)
+void loadi(uint16_t value);
+
+// Draws a sprite to the screen (DXYN)
+void draw(uint8_t reg1, uint8_t reg2, uint8_t height);
