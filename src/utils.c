@@ -6,5 +6,9 @@
 
 bool getBit(uint8_t byte, uint8_t bit)
 {
-	return (uint8_t) pow(2, ( bit - 7 )) >> (uint8_t) pow(2, ( bit - 7 ) - 1);
+	// Generate a mask
+	uint8_t mask = (uint8_t) pow(2, bit) >> (uint8_t) pow(2, bit - 1);
+	
+	// Return masked and shifted value
+	return (byte & mask) >> bit;
 }
