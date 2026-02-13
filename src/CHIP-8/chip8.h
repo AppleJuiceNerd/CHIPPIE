@@ -17,8 +17,8 @@ typedef struct _Chip8 {
 
 /* Machine functions */
 
-// Loads a rom from a file
-void loadrom(Chip8 *machine, char *filename);
+// Loads a rom from a file, returns false if unsuccessful
+bool loadrom(Chip8 *machine, char *filename);
 
 // Runs a machine for a cycle
 void tick(Chip8 *machine);
