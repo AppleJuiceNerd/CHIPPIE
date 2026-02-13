@@ -27,6 +27,9 @@ bool loadRom(Chip8 *machine, char *filename);
 // Runs a machine for a cycle
 void tick(Chip8 *machine);
 
+// Gets a display index based on a position
+int positionToDisplay(int x, int y);
+
 
 /* Opcode functions */
 

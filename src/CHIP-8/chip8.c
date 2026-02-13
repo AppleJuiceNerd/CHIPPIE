@@ -2,6 +2,11 @@
 #include "chip8.h"
 
 
+int positionToDisplay(int x, int y)
+{
+	return x + (y * 32);
+}
+
 void setupMachine(Chip8 *machine)
 {
 	// Clear ram
