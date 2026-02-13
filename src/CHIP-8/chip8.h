@@ -3,7 +3,8 @@
 
 
 // Struct representation of a CHIP-8 machine
-typedef struct _Chip8 {
+typedef struct _Chip8
+{
 	uint8_t  ram[4096];        // 4 KB of memory
 	bool     display[64 * 32]; // 64 x 32 monochrome display
 	uint16_t pc;               // Program counter
@@ -18,7 +19,7 @@ typedef struct _Chip8 {
 /* Machine functions */
 
 // Loads a rom from a file, returns false if unsuccessful
-bool loadrom(Chip8 *machine, char *filename);
+bool loadRom(Chip8 *machine, char *filename);
 
 // Runs a machine for a cycle
 void tick(Chip8 *machine);
@@ -33,10 +34,10 @@ void clear();
 void jump(uint16_t dest);
 
 // Loads a register with a value (6XNN)
-void loadv(uint8_t reg, uint8_t value); 
+void loadV(uint8_t reg, uint8_t value); 
 
 // Loads index register with a value (ANNN)
-void loadi(uint16_t value);
+void loadI(uint16_t value);
 
 // Draws a sprite to the screen (DXYN)
 void draw(uint8_t reg1, uint8_t reg2, uint8_t height);

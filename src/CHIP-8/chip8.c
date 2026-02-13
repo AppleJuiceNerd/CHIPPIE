@@ -2,13 +2,15 @@
 #include "chip8.h"
 
 
-bool loadrom(Chip8 *machine, char *filename) {
+bool loadRom(Chip8 *machine, char *filename)
+{
 	// Open file
 	FILE* rom;
 	rom = fopen(filename, "rb");
 
 	// If something goes wrong, stop
-	if(rom == NULL) {
+	if(rom == NULL)
+	{
 		return false;
 	}
 

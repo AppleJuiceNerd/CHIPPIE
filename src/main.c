@@ -9,7 +9,8 @@ int main(int argc, char** argv) {
 	// If it can't be found, then we shouldn't initialize the window.
 	Chip8 machine;
 
-	if(!loadrom(&machine, argv[1])) {
+	if(!loadRom(&machine, argv[1]))
+	{
 		printf("Something went wrong.\n");
 		exit(1);
 	}
@@ -20,7 +21,6 @@ int main(int argc, char** argv) {
 	Color on_color = {0xF5, 0xCE, 0x3A, 0xFF};
 	InitWindow(64 * res_mul, 32 * res_mul, "CHIPPIE");
 
-	
 
 	while(!WindowShouldClose())
 	{
