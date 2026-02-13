@@ -18,6 +18,9 @@ typedef struct _Chip8
 
 /* Machine functions */
 
+// Sets up the machine by setting all values to zero
+void setupMachine(Chip8 *machine);
+
 // Loads a rom from a file, returns false if unsuccessful
 bool loadRom(Chip8 *machine, char *filename);
 

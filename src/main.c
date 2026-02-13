@@ -9,6 +9,8 @@ int main(int argc, char** argv) {
 	// If it can't be found, then we shouldn't initialize the window.
 	Chip8 machine;
 
+	setupMachine(&machine);
+
 	if(!loadRom(&machine, argv[1]))
 	{
 		printf("Something went wrong.\n");

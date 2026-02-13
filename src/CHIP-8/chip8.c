@@ -2,6 +2,39 @@
 #include "chip8.h"
 
 
+void setupMachine(Chip8 *machine)
+{
+	// Clear ram
+	for(int i = 0; i < 4096; i++)
+	{
+		machine->ram[i] = 0;
+	}
+
+	// Clear display
+	for(int i = 0; i < 64*32; i++)
+	{
+		machine->display[i] = 0;
+	}
+
+	// Clear stack
+	for(int i = 0; i < 100; i++)
+	{
+		machine->stack[i] = 0;
+	}
+
+	// Clear registers
+	for(int i = 0; i < 16; i++)
+	{
+		machine->registers[i] = 0;
+	}
+
+	// Clear all other important variables
+	machine->pc          = 0x200; // The program counter should start at 0x200
+	machine->i           = 0;
+	machine->delay_timer = 0;
+	machine->sound_timer = 0;
+}
+
 bool loadRom(Chip8 *machine, char *filename)
 {
 	// Open file
