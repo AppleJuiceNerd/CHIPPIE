@@ -7,6 +7,44 @@ int positionToDisplay(int x, int y)
 	return x + (y * 32);
 }
 
+void tick(Chip8 *machine)
+{
+	uint16_t opcode = machine->ram[machine->pc];
+	opcode = (opcode << 8) + machine->ram[machine->pc + 1];
+	
+	switch (opcode >> 12)
+	{
+		case 0x0:
+			switch (opcode)
+			{
+				case 0x00E0:
+					clear(machine);
+			}
+
+			break;
+		
+		case 0x1:
+			jump(machine, opcode & 0xF);
+			break;
+		
+		case 0x6:
+			loadV(machine, (opcode >> 8) & 0xF, opcode & 0xFF);
+			break;
+
+		case 0xA:
+			loadI(machine, opcode & 0xFFF);
+			break;
+
+		case 0xD:
+			draw(machine, (opcode >> 8) & 0xF, (opcode >> 4) & 0xF, opcode & 0xF);
+			break;
+
+		default:
+			; // Unimplemented	
+	}
+}
+
+
 void setupMachine(Chip8 *machine)
 {
 	// Clear ram
