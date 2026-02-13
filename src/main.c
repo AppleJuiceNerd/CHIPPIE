@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
 			{
 				if(machine.display[positionToDisplay(x, y)])
 				{
-					DrawRectangle(x, y, res_mul, res_mul, on_color);
+					DrawRectangle(x * res_mul, y * res_mul, res_mul, res_mul, on_color);
 				}
 			}
 		}

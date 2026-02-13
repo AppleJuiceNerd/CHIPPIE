@@ -44,7 +44,7 @@ void draw(Chip8 *machine, uint8_t reg1, uint8_t reg2, uint8_t height)
 	uint8_t data = 0;
 	
 	// Current bit being used in the loop
-	bool bit = 0; 
+	int bit = 0; 
 
 	// Loop through each row of the sprite
 	for(int row = 0; row < height; row++)
@@ -56,7 +56,7 @@ void draw(Chip8 *machine, uint8_t reg1, uint8_t reg2, uint8_t height)
 		for(int col = 0; col < 8; col++)
 		{
 			// Take a bit(e)
-			bit = getBit(data, col - 7);
+			bit = getBit(data, 7 - col);
 			
 			// If both the sprite and display pixels are on, turn the display pixel off
 			if(machine->display[positionToDisplay(x + col, y + row)] && bit)
