@@ -42,6 +42,9 @@ void tick(Chip8 *machine)
 		default:
 			; // Unimplemented	
 	}
+
+	// Increment program counter
+	machine->pc += 2;
 }
 
 
