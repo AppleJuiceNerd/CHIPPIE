@@ -1,5 +1,6 @@
-#include <stdio.h>
 #include "raylib.h"
+#include "CHIP-8/chip8.h"
+
 
 int main() {
 	int res_mul = 20;

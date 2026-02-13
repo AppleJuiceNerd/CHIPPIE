@@ -28,6 +28,7 @@ endif()
 # Build and link
 add_executable(CHIPPIE
   src/main.c
+  src/CHIP-8/chip8.c
 )
 target_link_libraries(${PROJECT_NAME} raylib)
 
