@@ -30,7 +30,7 @@ void draw(Chip8 *machine, uint8_t reg1, uint8_t reg2, uint8_t height)
 {
 	// Sprite draw position
 	uint8_t x = machine->registers[reg1];
-	uint8_t y = machine->registers[reg1];
+	uint8_t y = machine->registers[reg2];
 
 
 	// Make sure that where the sprite starts drawing is on the screen
