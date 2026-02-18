@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "chip8.h"
+#include "../utils.h"
 
 
 // int positionToDisplay(int x, int y)
@@ -12,7 +13,7 @@ void tick(Chip8 *machine)
 	uint16_t opcode = machine->ram[machine->pc];
 	opcode = (opcode << 8) + machine->ram[machine->pc + 1];
 	
-	switch (opcode >> 12)
+	switch (NIBBLE_1(opcode))
 	{
 		case 0x0:
 			switch (opcode)
@@ -24,19 +25,19 @@ void tick(Chip8 *machine)
 			break;
 		
 		case 0x1:
-			jump(machine, opcode & 0xF);
+			jump(machine, C8_ADDRESS(opcode));
 			break;
 		
 		case 0x6:
-			loadV(machine, (opcode >> 8) & 0xF, opcode & 0xFF);
+			loadV(machine, NIBBLE_2(opcode), LO_BYTE(opcode));
 			break;
 
 		case 0xA:
-			loadI(machine, opcode & 0xFFF);
+			loadI(machine, C8_ADDRESS(opcode));
 			break;
 
 		case 0xD:
-			draw(machine, (opcode >> 8) & 0xF, (opcode >> 4) & 0xF, opcode & 0xF);
+			draw(machine, NIBBLE_2(opcode), NIBBLE_3(opcode), NIBBLE_4(opcode));
 			break;
 
 		default:
