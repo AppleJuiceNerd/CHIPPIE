@@ -69,7 +69,7 @@ void draw(Chip8 *machine, uint8_t reg1, uint8_t reg2, uint8_t height)
 				machine->display[positionToDisplay(x + col, y + row)] = 1;	
 			}
 			
-			if(y + col == 64)
+			if(x + col == 64)
 			{
 				break;
 			}
