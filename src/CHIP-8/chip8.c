@@ -60,7 +60,7 @@ void setupMachine(Chip8 *machine)
 	clear(machine);
 
 	// Clear stack
-	for(int i = 0; i < 100; i++)
+	for(int i = 0; i < 24; i++)
 	{
 		machine->stack[i] = 0;
 	}

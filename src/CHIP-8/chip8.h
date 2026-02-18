@@ -9,7 +9,7 @@ typedef struct _Chip8
 	bool     display[64 * 32]; // 64 x 32 monochrome display
 	uint16_t pc;               // Program counter
 	uint16_t i;                // Index register
-	uint16_t stack[100];       // Stack (limited; unsure what a good cap would be)
+	uint16_t stack[24];        // Stack (limited; unsure what a good cap would be)
 	uint8_t  delay_timer;      // Delay Timer
 	uint8_t  sound_timer;      // Sound Timer
 	uint8_t  registers[16];    // All 16 variable registers
@@ -47,3 +47,10 @@ void loadI(Chip8 *machine, uint16_t value);
 
 // Draws a sprite to the screen (DXYN)
 void draw(Chip8 *machine, uint8_t reg1, uint8_t reg2, uint8_t height);
+
+
+/* Debug functions */
+
+// Dumps all of the memory used by the machine to a file
+// Returns false if unsuccessful
+bool dumpMachine(Chip8* machine, char* filename);
