@@ -2,10 +2,10 @@
 #include "chip8.h"
 
 
-int positionToDisplay(int x, int y)
-{
-	return x + (y * 32);
-}
+// int positionToDisplay(int x, int y)
+// {
+// 	return x + (y * 32);
+// }
 
 void tick(Chip8 *machine)
 {

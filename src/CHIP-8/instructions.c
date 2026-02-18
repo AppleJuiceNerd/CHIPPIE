@@ -5,9 +5,12 @@
 
 void clear(Chip8 *machine)
 {
-	for(int i = 0; i < 64*32; i++)
+	for(int y = 0; y < 32; y++)
 	{
-		machine->display[i] = 0;
+		for(int x = 0; x < 64; x++)
+		{
+			machine->display[y][x] = 0;
+		}
 	}
 }
 
@@ -59,14 +62,14 @@ void draw(Chip8 *machine, uint8_t reg1, uint8_t reg2, uint8_t height)
 			bit = getBit(data, 7 - col);
 			
 			// If both the sprite and display pixels are on, turn the display pixel off
-			if(machine->display[positionToDisplay(x + col, y + row)] && bit)
+			if(machine->display[y + row][x + col] && bit)
 			{
-				machine->display[positionToDisplay(x + col, y + row)] = 0;
+				machine->display[y + row][x + col] = 0;
 				machine->registers[0xF] = 1;
 			}
 			else if(bit)
 			{
-				machine->display[positionToDisplay(x + col, y + row)] = 1;	
+				machine->display[y + row][x + col] = 1;	
 			}
 			
 			if(x + col == 64)

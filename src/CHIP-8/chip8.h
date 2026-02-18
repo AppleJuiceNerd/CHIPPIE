@@ -6,7 +6,7 @@
 typedef struct _Chip8
 {
 	uint8_t  ram[4096];        // 4 KB of memory
-	bool     display[64 * 32]; // 64 x 32 monochrome display
+	bool     display[32][64];  // 64 x 32 monochrome display
 	uint16_t pc;               // Program counter
 	uint16_t i;                // Index register
 	uint16_t stack[24];        // Stack (limited; unsure what a good cap would be)
@@ -28,7 +28,7 @@ bool loadRom(Chip8 *machine, char *filename);
 void tick(Chip8 *machine);
 
 // Gets a display index based on a position
-int positionToDisplay(int x, int y);
+// int positionToDisplay(int x, int y);
 
 
 /* Opcode functions */
