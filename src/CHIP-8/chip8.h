@@ -42,6 +42,9 @@ void jump(Chip8 *machine, uint16_t dest);
 // Loads a register with a value (6XNN)
 void loadV(Chip8 *machine, uint8_t reg, uint8_t value); 
 
+// Adds a value to a register (7XNN)
+void addNV(Chip8 *machine, uint8_t reg, uint8_t value);
+
 // Loads index register with a value (ANNN)
 void loadI(Chip8 *machine, uint16_t value);
 

@@ -24,6 +24,11 @@ void loadV(Chip8 *machine, uint8_t reg, uint8_t value)
 	machine->registers[reg] = value;
 }
 
+void addNV(Chip8 *machine, uint8_t reg, uint8_t value)
+{
+	machine->registers[reg] += value;
+}
+
 void loadI(Chip8 *machine, uint16_t value)
 {
 	machine->i = value;
