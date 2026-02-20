@@ -235,11 +235,16 @@ void draw(Chip8 *machine, uint8_t reg1, uint8_t reg2, uint8_t height)
 	}
 }
 
+void addI(Chip8 *machine, uint8_t reg)
+{
+	machine->i += machine->registers[reg];
+}
+
 void bcd(Chip8 *machine, uint8_t reg)
 {
 	uint8_t num = machine->registers[reg];
 
-	
+
 	// First digit
 	machine->ram[machine->i]     = (num / 100) % 10;
 

@@ -72,6 +72,9 @@ void loadI(Chip8 *machine, uint16_t value);
 // Draws a sprite to the screen (DXYN)
 void draw(Chip8 *machine, uint8_t reg1, uint8_t reg2, uint8_t height);
 
+// Adds VX to I (FX1E)
+void addI(Chip8 *machine, uint8_t reg);
+
 // Sets the memory starting at I to a binary-coded decimal, converted from the value in VX (FX33)
 void bcd(Chip8 *machine, uint8_t reg);
 
