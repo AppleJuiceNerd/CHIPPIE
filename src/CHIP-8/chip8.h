@@ -57,3 +57,7 @@ void draw(Chip8 *machine, uint8_t reg1, uint8_t reg2, uint8_t height);
 // Dumps all of the memory used by the machine to a file
 // Returns false if unsuccessful
 bool dumpMachine(Chip8* machine, char* filename);
+
+// Shows debug info on-screen
+// should be called inside the draw loop
+void drawDebugInfo(Chip8 *machine);
