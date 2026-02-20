@@ -67,9 +67,23 @@ void tick(Chip8 *machine)
 		case 0xD:
 			draw(machine, NIBBLE_2(opcode), NIBBLE_3(opcode), NIBBLE_4(opcode));
 			break;
+		
+		case 0xF:
+			switch (LO_BYTE(opcode))
+			{
+				case 0x55:
+					storeMem(machine, NIBBLE_2(opcode));
+					break;
+
+				case 0x65:
+					loadMem(machine, NIBBLE_2(opcode));
+					break;
+			}
+
+			break;
 
 		default:
-			printf("Unimplemented Instruction"); // Unimplemented	
+			printf("Unimplemented Instruction\n"); // Unimplemented	
 	}
 
 	// Increment program counter

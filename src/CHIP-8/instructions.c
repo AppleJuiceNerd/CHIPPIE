@@ -234,3 +234,20 @@ void draw(Chip8 *machine, uint8_t reg1, uint8_t reg2, uint8_t height)
 		}
 	}
 }
+
+// NOTE: storeMem and loadMem don't touch the I register, so ROMs that expect that behavior won't work as intended.
+void storeMem(Chip8 *machine, uint8_t reg)
+{
+	for (int i = 0; i <= reg; i++)
+	{
+		machine->ram[machine->i + i] = machine->registers[i];
+	}
+}
+
+void loadMem(Chip8 *machine, uint8_t reg)
+{
+	for (int i = 0; i <= reg; i++)
+	{
+		machine->registers[i] = machine->ram[machine->i + i];
+	}
+}

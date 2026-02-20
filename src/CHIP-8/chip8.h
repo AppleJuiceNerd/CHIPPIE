@@ -72,6 +72,12 @@ void loadI(Chip8 *machine, uint16_t value);
 // Draws a sprite to the screen (DXYN)
 void draw(Chip8 *machine, uint8_t reg1, uint8_t reg2, uint8_t height);
 
+// Stores the values of registers V0-VX (inclusive) to memory starting at I (FX55)
+void storeMem(Chip8 *machine, uint8_t reg);
+
+// Loads memory starting at I to the values of registers V0-VX, inclusive (FX65)
+void loadMem(Chip8 *machine, uint8_t reg);
+
 
 /* Debug functions */
 
