@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.28)
-project(CHIPPIE
+project(chippie
   LANGUAGES C
 )
 
@@ -26,7 +26,7 @@ endif()
 
 
 # Build and link
-add_executable(CHIPPIE
+add_executable(${PROJECT_NAME}
   src/main.c
   src/utils.c
   src/CHIP-8/chip8.c

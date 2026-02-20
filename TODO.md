@@ -7,7 +7,7 @@ This is a list of everything I currently want to do with the project in detail, 
     - [x] CHIP-8 splash screen
     - [x] IBM Logo
     - [x] Corax+ opcode test
-    - [ ] Flags test
+    - [x] Flags test
     - [ ] Quirks test
     - [ ] Keypad test
     - [ ] Beep test
