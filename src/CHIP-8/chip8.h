@@ -66,6 +66,9 @@ void addNV(Chip8 *machine, uint8_t reg, uint8_t value);
 // Sets VX to the value of VY (8XY0)
 void set(Chip8 *machine, uint8_t reg1, uint8_t reg2);
 
+// Sets VX to the result of VX | VY (8XY1)
+void or(Chip8 *machine, uint8_t reg1, uint8_t reg2);
+
 // Loads index register with a value (ANNN)
 void loadI(Chip8 *machine, uint16_t value);
 
