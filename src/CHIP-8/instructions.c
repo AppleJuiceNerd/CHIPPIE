@@ -22,6 +22,7 @@ void ret(Chip8 *machine)
 void jump(Chip8 *machine, uint16_t dest)
 {
 	machine->pc = dest;
+	machine->pc -= 2; // Decrement program counter to prevent incorrect jumps
 }
 
 void call(Chip8 *machine, uint16_t dest)
