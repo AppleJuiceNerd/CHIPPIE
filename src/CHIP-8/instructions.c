@@ -39,6 +39,26 @@ void skipN(Chip8 *machine, uint8_t reg, uint8_t value, bool not)
 	}
 }
 
+void skipV(Chip8 *machine, uint8_t reg1, uint8_t reg2, bool not)
+{
+	// NOTE: Maybe find a better way to do this
+	if(!not)
+	{
+		// 5XY0
+		if(machine->registers[reg1] == machine->registers[reg2])
+		{
+			machine->pc += 2;
+		}
+	} else
+	{
+		// 9XY0
+		if(machine->registers[reg1] != machine->registers[reg2])
+		{
+			machine->pc += 2;
+		}
+	}
+}
+
 void loadV(Chip8 *machine, uint8_t reg, uint8_t value)
 {
 	machine->registers[reg] = value;

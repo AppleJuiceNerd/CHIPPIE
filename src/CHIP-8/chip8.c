@@ -37,12 +37,20 @@ void tick(Chip8 *machine)
 			skipN(machine, NIBBLE_2(opcode), LO_BYTE(opcode), true);
 			break;
 		
+		case 0x5:
+			skipV(machine, NIBBLE_2(opcode), NIBBLE_3(opcode), false);
+			break;
+		
 		case 0x6:
 			loadV(machine, NIBBLE_2(opcode), LO_BYTE(opcode));
 			break;
 		
 		case 0x7:
 			addNV(machine, NIBBLE_2(opcode), LO_BYTE(opcode));
+			break;
+		
+		case 0x9:
+			skipV(machine, NIBBLE_2(opcode), NIBBLE_3(opcode), true);
 			break;
 
 		case 0xA:
