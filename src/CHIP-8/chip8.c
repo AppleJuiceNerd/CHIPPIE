@@ -69,7 +69,7 @@ void tick(Chip8 *machine)
 			break;
 
 		default:
-			; // Unimplemented	
+			printf("Unimplemented Instruction"); // Unimplemented	
 	}
 
 	// Increment program counter
