@@ -5,7 +5,7 @@ This is a list of everything I currently want to do with the project in detail, 
 - [ ] Complete CHIP-8 Emulator
   - [ ] Pass all [emulator tests](https://github.com/Timendus/chip8-test-suite)
     - [x] CHIP-8 splash screen
-    - [ ] IBM Logo
+    - [x] IBM Logo
     - [ ] Corax+ opcode test
     - [ ] Flags test
     - [ ] Quirks test

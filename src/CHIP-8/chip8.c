@@ -35,6 +35,7 @@ void tick(Chip8 *machine)
 		
 		case 0x7:
 			addNV(machine, NIBBLE_2(opcode), LO_BYTE(opcode));
+			break;
 
 		case 0xA:
 			loadI(machine, C8_ADDRESS(opcode));
