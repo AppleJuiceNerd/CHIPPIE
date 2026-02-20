@@ -71,6 +71,10 @@ void tick(Chip8 *machine)
 		case 0xF:
 			switch (LO_BYTE(opcode))
 			{
+				case 0x33:
+					bcd(machine, NIBBLE_2(opcode));
+					break;
+					
 				case 0x55:
 					storeMem(machine, NIBBLE_2(opcode));
 					break;

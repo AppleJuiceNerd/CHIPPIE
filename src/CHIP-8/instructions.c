@@ -235,6 +235,21 @@ void draw(Chip8 *machine, uint8_t reg1, uint8_t reg2, uint8_t height)
 	}
 }
 
+void bcd(Chip8 *machine, uint8_t reg)
+{
+	uint8_t num = machine->registers[reg];
+
+	
+	// First digit
+	machine->ram[machine->i]     = (num / 100) % 10;
+
+	// Second digit
+	machine->ram[machine->i + 1] = (num / 10)  % 10;
+
+	// Third digit
+	machine->ram[machine->i + 2] = num         % 10;
+}
+
 // NOTE: storeMem and loadMem don't touch the I register, so ROMs that expect that behavior won't work as intended.
 void storeMem(Chip8 *machine, uint8_t reg)
 {
