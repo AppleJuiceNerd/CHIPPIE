@@ -1,3 +1,4 @@
+#include <limits.h>
 #include <stdbool.h>
 #include <stdint.h>
 
@@ -41,8 +42,14 @@ uint16_t pop(Chip8 *machine);
 // Clear screen (00E0)
 void clear(Chip8 *machine);
 
+// Return from subroutine (00EE)
+void ret(Chip8 *machine);
+
 // Jump pc to memory location (1NNN)
 void jump(Chip8 *machine, uint16_t dest);
+
+// Call subroutine
+void call(Chip8 *machine, uint16_t dest);
 
 // Skip if VX is or is not equal to NN, depending on the instruction (3XNN & 4XNN)
 void skipN(Chip8 *machine, uint8_t reg, uint8_t value, bool not);

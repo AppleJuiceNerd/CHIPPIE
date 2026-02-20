@@ -15,6 +15,11 @@ void tick(Chip8 *machine)
 			{
 				case 0x00E0:
 					clear(machine);
+					break;
+
+				case 0x00EE:
+					ret(machine);
+					break;
 			}
 
 			break;
@@ -22,6 +27,10 @@ void tick(Chip8 *machine)
 		case 0x1:
 			jump(machine, C8_ADDRESS(opcode));
 			machine->pc -= 2; // Decrement program counter to prevent incorrect jumps
+			break;
+		
+		case 0x2:
+			call(machine, C8_ADDRESS(opcode));
 			break;
 		
 		case 0x3:
@@ -97,7 +106,7 @@ void setupMachine(Chip8 *machine)
 
 void push(Chip8 *machine, uint16_t addr)
 {
-	machine->stack[machine->stack_top] = machine->pc;
+	machine->stack[machine->stack_top] = addr;
 	machine->stack_top++;
 }
 

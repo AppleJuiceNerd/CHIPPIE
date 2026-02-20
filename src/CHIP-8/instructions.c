@@ -14,9 +14,20 @@ void clear(Chip8 *machine)
 	}
 }
 
+void ret(Chip8 *machine)
+{
+	jump(machine, pop(machine));
+}
+
 void jump(Chip8 *machine, uint16_t dest)
 {
 	machine->pc = dest;
+}
+
+void call(Chip8 *machine, uint16_t dest)
+{
+	push(machine, machine->pc);
+	jump(machine, dest);
 }
 
 void skipN(Chip8 *machine, uint8_t reg, uint8_t value, bool not)
