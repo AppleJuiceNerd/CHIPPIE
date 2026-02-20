@@ -2,7 +2,6 @@
 
 This is a list of everything I currently want to do with the project in detail, and in no particular order.
 
-- [ ] Make a base emulator class
 - [ ] Complete CHIP-8 Emulator
   - [ ] Pass all [emulator tests](https://github.com/Timendus/chip8-test-suite)
     - [x] CHIP-8 splash screen

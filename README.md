@@ -1,8 +1,8 @@
 # CHIPPIE
 
-CHIPPIE is yet another CHIP-8 emulator that I work on in my free time. It's written in C++ and uses SFML for graphics. My general goal is just to end up with something that's enjoyable to use. [It's still a major work in progress.](#roadmap)
+CHIPPIE is yet another CHIP-8 emulator that I work on in my free time. It's written in C and uses Raylib for graphics. My general goal is just to end up with something that's enjoyable to use. [It's still a major work in progress.](#roadmap)
 
-*The name is also a minor reference to [CHAPPiE](https://en.wikipedia.org/wiki/Chappie_(film)).*
+**The emulator is not currently usable.**
 
 ## Installation
 
@@ -23,26 +23,7 @@ cmake -B build
 cmake --build build
 ```
 
-There are dependencies on Linux that need to be installed beforehand in order to successfully build the project. Here's how to install these for Debian-based distributions:
-
-```bash
-sudo apt update
-sudo apt install \
-    libxrandr-dev \
-    libxcursor-dev \
-    libudev-dev \
-    libopenal-dev \
-    libflac-dev \
-    libvorbis-dev \
-    libgl1-mesa-dev \
-    libegl1-mesa-dev \
-    libdrm-dev \
-    libgbm-dev
-```
-
-The names of these packages are different depending on the distribution and will be provided for convenience whenever I have the chance to look for everything (Maybe this could be a contribution?)
-
-If this doesn't work, make an issue and I'll try and figure it out.
+I haven't yet worked out information on dependencies.
 
 ## Usage
 
@@ -70,11 +51,7 @@ For more info on the more specific details of planned features, check out [TODO.
 
 ## Contributing
 
-Contributions are more than  welcome! Just keep a few things in mind:
-
-- I'm still very new to C++ and I'm currently learning what and what not to do. Any changes to the code that help it overall are appreciated!
-- I also don't know how to write C++ tests yet, *especially* for an emulator, so any input on that would be helpful as well!
-- Feature additions are fine with me as long as I personally feel they work with the project. If you have an idea, suggest it in an issue first. I would not like to waste your time.
+This... is a personal project right now.
 
 ## Credits
 
@@ -83,17 +60,6 @@ Contributions are more than  welcome! Just keep a few things in mind:
     - This is what I've used to test how the emulator functions and it seems to work great!
   - [CHIP-8 Research Facility](https://chip-8.github.io/) by [tobiasvl](https://github.com/tobiasvl)
     - This was made for the purpose of gathering useful sources information about CHIP-8 in one place. I highly recommend it if you also want to make a CHIP-8 emulator.
-- C++ Resources
-  - [SFML](https://www.sfml-dev.org/) and their [CMake Project Template](https://github.com/SFML/cmake-sfml-project)
-    - This is what was used to get the project up and running very quickly.
-  - [cplusplus.com](https://cplusplus.com)  tutorials
-    - An invaluable resource to me to discover and learn how standard C++ objects work.
-  - [cppreference.com](https://cppreference.com) documentation-style references
-    - Helped in the same ways cplusplus.com did.
-  - [www.learncpp.com](https://www.learncpp.com) tutorials
-    - An important resource to me for learning general C++ concepts.
-  - [Wikipedia](https://www.wikipedia.org/) for the [nibble macros](https://en.wikipedia.org/wiki/Nibble#Extracting_a_nibble_from_a_byte)
-    - I needed a way to extract nibbles, and the code was just there. And it WORKS. How could I *not* use it?? (this is borrowing I thinks)
 
 ## License
 
