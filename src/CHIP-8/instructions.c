@@ -1,3 +1,4 @@
+#include <iso646.h>
 #include <stdint.h>
 #include "chip8.h"
 #include "../utils.h"
@@ -32,10 +33,10 @@ void call(Chip8 *machine, uint16_t dest)
 	jump(machine, dest);
 }
 
-void skipN(Chip8 *machine, uint8_t reg, uint8_t value, bool not)
+void skipN(Chip8 *machine, uint8_t reg, uint8_t value, bool _not)
 {
 	// NOTE: Maybe find a better way to do this
-	if(!not)
+	if(!_not)
 	{
 		// 3XNN
 		if(machine->registers[reg] == value)
@@ -52,10 +53,10 @@ void skipN(Chip8 *machine, uint8_t reg, uint8_t value, bool not)
 	}
 }
 
-void skipV(Chip8 *machine, uint8_t reg1, uint8_t reg2, bool not)
+void skipV(Chip8 *machine, uint8_t reg1, uint8_t reg2, bool _not)
 {
 	// NOTE: Maybe find a better way to do this
-	if(!not)
+	if(!_not)
 	{
 		// 5XY0
 		if(machine->registers[reg1] == machine->registers[reg2])
@@ -82,14 +83,20 @@ void addNV(Chip8 *machine, uint8_t reg, uint8_t value)
 	machine->registers[reg] += value;
 }
 
-void set(Chip8 *machine, uint8_t reg1, uint8_t reg2)
+void arithmetic(Chip8 *machine, uint8_t reg1, uint8_t reg2, uint8_t operation)
 {
-	machine->registers[reg1] = machine->registers[reg2];
-}
-
-void or(Chip8 *machine, uint8_t reg1, uint8_t reg2)
-{
-	machine->registers[reg1] |= machine->registers[reg2];
+	switch (operation)
+	{
+		// VX = VY (8XY0)
+		case 0x0:
+			machine->registers[reg1] = machine->registers[reg2];
+			break;
+		
+		// VX |= VY (8XY0)
+		case 0x1:
+			machine->registers[reg1] |= machine->registers[reg2];
+			break;
+	}
 }
 
 void loadI(Chip8 *machine, uint16_t value)

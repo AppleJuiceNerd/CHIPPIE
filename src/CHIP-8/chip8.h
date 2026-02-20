@@ -52,10 +52,10 @@ void jump(Chip8 *machine, uint16_t dest);
 void call(Chip8 *machine, uint16_t dest);
 
 // Skip if VX is or is not equal to NN, depending on the instruction (3XNN & 4XNN)
-void skipN(Chip8 *machine, uint8_t reg, uint8_t value, bool not);
+void skipN(Chip8 *machine, uint8_t reg, uint8_t value, bool _not);
 
 // Skip if VX is or is not equal to VY, depending on the instruction (5XY0 & 9XY0)
-void skipV(Chip8 *machine, uint8_t reg1, uint8_t reg2, bool not);
+void skipV(Chip8 *machine, uint8_t reg1, uint8_t reg2, bool _not);
 
 // Loads a register with a value (6XNN)
 void loadV(Chip8 *machine, uint8_t reg, uint8_t value); 
@@ -63,11 +63,8 @@ void loadV(Chip8 *machine, uint8_t reg, uint8_t value);
 // Adds a value to a register (7XNN)
 void addNV(Chip8 *machine, uint8_t reg, uint8_t value);
 
-// Sets VX to the value of VY (8XY0)
-void set(Chip8 *machine, uint8_t reg1, uint8_t reg2);
-
-// Sets VX to the result of VX | VY (8XY1)
-void or(Chip8 *machine, uint8_t reg1, uint8_t reg2);
+// Sets VX to the results of an operation between VX and VY determined by N (8XYN)
+void arithmetic(Chip8 *machine, uint8_t reg1, uint8_t reg2, uint8_t operation);
 
 // Loads index register with a value (ANNN)
 void loadI(Chip8 *machine, uint16_t value);

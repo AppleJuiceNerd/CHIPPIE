@@ -53,16 +53,7 @@ void tick(Chip8 *machine)
 			break;
 		
 		case 0x8:
-			switch (NIBBLE_4(opcode))
-			{
-				case 0x0:
-					set(machine, NIBBLE_2(opcode), NIBBLE_3(opcode));
-					break;
-				
-				case 0x1:
-					or(machine, NIBBLE_2(opcode), NIBBLE_3(opcode));
-					break;
-			}
+			arithmetic(machine, NIBBLE_2(opcode), NIBBLE_3(opcode), NIBBLE_4(opcode));
 			break;
 		
 		case 0x9:
