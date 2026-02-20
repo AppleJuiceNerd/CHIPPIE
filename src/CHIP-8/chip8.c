@@ -52,6 +52,14 @@ void tick(Chip8 *machine)
 			addNV(machine, NIBBLE_2(opcode), LO_BYTE(opcode));
 			break;
 		
+		case 0x8:
+			switch (NIBBLE_4(opcode))
+			{
+				case 0x0:
+					set(machine, NIBBLE_2(opcode), NIBBLE_3(opcode));
+			}
+			break;
+		
 		case 0x9:
 			skipV(machine, NIBBLE_2(opcode), NIBBLE_3(opcode), true);
 			break;

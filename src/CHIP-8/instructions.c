@@ -82,6 +82,11 @@ void addNV(Chip8 *machine, uint8_t reg, uint8_t value)
 	machine->registers[reg] += value;
 }
 
+void set(Chip8 *machine, uint8_t reg1, uint8_t reg2)
+{
+	machine->registers[reg1] = machine->registers[reg2];
+}
+
 void loadI(Chip8 *machine, uint16_t value)
 {
 	machine->i = value;
