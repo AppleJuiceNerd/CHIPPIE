@@ -88,6 +88,11 @@ void arithmetic(Chip8 *machine, uint8_t reg1, uint8_t reg2, uint8_t operation)
 	// Used for overflow detection
 	uint16_t result = 0;
 
+	// Store copies of the original operators
+	// Only used for the instructions that need it
+	uint8_t op1 = machine->registers[reg1];
+	uint8_t op2 = machine->registers[reg2];
+
 
 	switch (operation)
 	{
@@ -113,14 +118,15 @@ void arithmetic(Chip8 *machine, uint8_t reg1, uint8_t reg2, uint8_t operation)
 		
 		// VX += VY with carry (8XY4)
 		case 0x4:
-			// VF is 0 until an overflow is detected
-			machine->registers[0xF] = 0;
-
 			// Do the addition
-			result = machine->registers[reg1] + machine->registers[reg2];
+			result = op1 + op2;
 
 			// Set reg1 to 8 bit result
 			machine->registers[reg1] = LO_BYTE(result);
+
+
+			// VF should be 0 until an overflow is detected
+			machine->registers[0xF] = 0;
 
 			// If the result has overflown, set VF to 1
 			if(HI_BYTE(result))
@@ -132,16 +138,16 @@ void arithmetic(Chip8 *machine, uint8_t reg1, uint8_t reg2, uint8_t operation)
 		
 		// VX -= VY  (8XY5)
 		case 0x5:
-			// VF is 1 until an underflow is detected
-			machine->registers[0xF] = 1;
-
 			// Do the subtraction
 			machine->registers[reg1] -= machine->registers[reg2];
 
 			// If an underflow is detected, set VF to 0
-			if(machine->registers[reg1] < machine->registers[reg2])
+			if(op1 < op2)
 			{
 				machine->registers[0xF] = 0;
+			} else
+			{
+				machine->registers[0xF] = 1;
 			}
 
 			break;
@@ -149,20 +155,21 @@ void arithmetic(Chip8 *machine, uint8_t reg1, uint8_t reg2, uint8_t operation)
 		// VX = VY >> 1 (8XY6)
 		case 0x6:
 			machine->registers[reg1] = machine->registers[reg2] >> 1;
+			machine->registers[0xF] = getBit(op2, 0);
 			break;
 		
 		// VX = VY - VX  (8XY7)
 		case 0x7:
-			// VF is 1 until an underflow is detected
-			machine->registers[0xF] = 1;
-
 			// Do the subtraction
 			machine->registers[reg1] = machine->registers[reg2] - machine->registers[reg1];
 
 			// If an underflow is detected, set VF to 0
-			if(machine->registers[reg2] < machine->registers[reg1])
+			if(op2 < op1)
 			{
 				machine->registers[0xF] = 0;
+			} else
+			{
+				machine->registers[0xF] = 1;
 			}
 
 			break;
@@ -170,6 +177,7 @@ void arithmetic(Chip8 *machine, uint8_t reg1, uint8_t reg2, uint8_t operation)
 		// VX = VY << 1 (8XYE)
 		case 0xE:
 			machine->registers[reg1] = machine->registers[reg2] << 1;
+			machine->registers[0xF] = getBit(op2, 7);
 			break;
 	}
 }
