@@ -3,11 +3,6 @@
 #include "../utils.h"
 
 
-// int positionToDisplay(int x, int y)
-// {
-// 	return x + (y * 32);
-// }
-
 void tick(Chip8 *machine)
 {
 	uint16_t opcode = machine->ram[machine->pc];
@@ -98,6 +93,18 @@ void setupMachine(Chip8 *machine)
 	machine->i           = 0;
 	machine->delay_timer = 0;
 	machine->sound_timer = 0;
+}
+
+void push(Chip8 *machine, uint16_t addr)
+{
+	machine->stack[machine->stack_top] = machine->pc;
+	machine->stack_top++;
+}
+
+uint16_t pop(Chip8 *machine)
+{
+	machine->stack_top--;
+	return machine->stack[machine->stack_top];
 }
 
 bool loadRom(Chip8 *machine, char *filename)

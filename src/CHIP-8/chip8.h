@@ -10,6 +10,7 @@ typedef struct _Chip8
 	uint16_t pc;               // Program counter
 	uint16_t i;                // Index register
 	uint16_t stack[24];        // Stack (limited; unsure what a good cap would be)
+	uint8_t stack_top;         // An index value that points to the top of the stack; first index is 1
 	uint8_t  delay_timer;      // Delay Timer
 	uint8_t  sound_timer;      // Sound Timer
 	uint8_t  registers[16];    // All 16 variable registers
@@ -27,8 +28,12 @@ bool loadRom(Chip8 *machine, char *filename);
 // Runs a machine for a cycle
 void tick(Chip8 *machine);
 
-// Gets a display index based on a position
-// int positionToDisplay(int x, int y);
+// Pushes an address to the stack
+void push(Chip8 *machine, uint16_t addr);
+
+// Pops an address from the top of the stack and returns it
+// The address won't be deleted, the top of the stack will just be redefined
+uint16_t pop(Chip8 *machine);
 
 
 /* Opcode functions */
