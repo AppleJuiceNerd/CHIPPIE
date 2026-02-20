@@ -17,6 +17,7 @@ void clear(Chip8 *machine)
 void ret(Chip8 *machine)
 {
 	jump(machine, pop(machine));
+	machine->pc += 2; // Prevent program counter from returning to the same instruction
 }
 
 void jump(Chip8 *machine, uint16_t dest)
