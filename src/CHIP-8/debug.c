@@ -35,15 +35,15 @@ void drawDebugInfo(Chip8 *machine)
 
 	sprintf(dbg_text, "instr = %#4X\n", opcode);
 
-	sprintf(cat,      "pc = %#3X\n", machine->pc);
+	sprintf(cat, "pc = %#3X\n", machine->pc);
 	strcat(dbg_text, cat);
 
-	sprintf(cat,      "i = %#3X\n", machine->i);
+	sprintf(cat, "i = %#3X\n", machine->i);
 	strcat(dbg_text, cat);
 
 	for(int i = 0; i < 16; i++)
 	{
-		sprintf(cat,      "V%2d = %#2X\n", i, machine->registers[i]);
+		sprintf(cat, "V%2d = %#2X\n", i, machine->registers[i]);
 		strcat(dbg_text, cat);
 	}
 	
