@@ -29,6 +29,14 @@ void tick(Chip8 *machine)
 			machine->pc -= 2; // Decrement program counter to prevent incorrect jumps
 			break;
 		
+		case 0x3:
+			skipN(machine, NIBBLE_2(opcode), LO_BYTE(opcode), false);
+			break;
+		
+		case 0x4:
+			skipN(machine, NIBBLE_2(opcode), LO_BYTE(opcode), true);
+			break;
+		
 		case 0x6:
 			loadV(machine, NIBBLE_2(opcode), LO_BYTE(opcode));
 			break;

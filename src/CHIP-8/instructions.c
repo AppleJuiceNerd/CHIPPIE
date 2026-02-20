@@ -19,6 +19,26 @@ void jump(Chip8 *machine, uint16_t dest)
 	machine->pc = dest;
 }
 
+void skipN(Chip8 *machine, uint8_t reg, uint8_t value, bool not)
+{
+	// NOTE: Maybe find a better way to do this
+	if(!not)
+	{
+		// 3XNN
+		if(machine->registers[reg] == value)
+		{
+			machine->pc += 2;
+		}
+	} else
+	{
+		// 4XNN
+		if(machine->registers[reg] != value)
+		{
+			machine->pc += 2;
+		}
+	}
+}
+
 void loadV(Chip8 *machine, uint8_t reg, uint8_t value)
 {
 	machine->registers[reg] = value;
