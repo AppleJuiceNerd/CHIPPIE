@@ -26,23 +26,32 @@ bool dumpMachine(Chip8 *machine, char *filename)
 
 void drawDebugInfo(Chip8 *machine)
 {
-	char dbg_text[100] = {0};
-	char cat[30] = {0};
-	int offset = 0;
+	char dbg_text[200] = {0};
+	char cat[20] = {0};
+
 
 	uint16_t opcode = machine->ram[machine->pc];
 	opcode = (opcode << 8) + machine->ram[machine->pc + 1];
 
 	sprintf(dbg_text, "instr = %#4X\n", opcode);
 
-	sprintf(cat, "pc = %#3X\n", machine->pc);
+	sprintf(cat,      "pc = %#3X\n", machine->pc);
 	strcat(dbg_text, cat);
 
-	sprintf(cat, "V0 = %#2X\n", machine->registers[0]);
+	sprintf(cat,      "i = %#3X\n", machine->i);
 	strcat(dbg_text, cat);
 
-
+	for(int i = 0; i < 16; i++)
+	{
+		sprintf(cat,      "V%2d = %#2X\n", i, machine->registers[i]);
+		strcat(dbg_text, cat);
+	}
 	
-
-	DrawText(dbg_text, 0, 0, 20, WHITE);
+	
+	DrawText(
+		dbg_text,
+		0, 0,
+		20,
+		WHITE
+	);
 }
