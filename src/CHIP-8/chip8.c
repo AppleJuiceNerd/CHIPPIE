@@ -26,6 +26,7 @@ void tick(Chip8 *machine)
 		
 		case 0x1:
 			jump(machine, C8_ADDRESS(opcode));
+			machine->pc -= 2; // Decrement program counter to prevent incorrect jumps
 			break;
 		
 		case 0x6:
