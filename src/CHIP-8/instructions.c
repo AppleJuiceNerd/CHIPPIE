@@ -85,6 +85,10 @@ void addNV(Chip8 *machine, uint8_t reg, uint8_t value)
 
 void arithmetic(Chip8 *machine, uint8_t reg1, uint8_t reg2, uint8_t operation)
 {
+	// Used for overflow detection
+	uint16_t result = 0;
+
+
 	switch (operation)
 	{
 		// VX = VY (8XY0)
@@ -92,9 +96,80 @@ void arithmetic(Chip8 *machine, uint8_t reg1, uint8_t reg2, uint8_t operation)
 			machine->registers[reg1] = machine->registers[reg2];
 			break;
 		
-		// VX |= VY (8XY0)
+		// VX |= VY (8XY1)
 		case 0x1:
 			machine->registers[reg1] |= machine->registers[reg2];
+			break;
+		
+		// VX &= VY (8XY2)
+		case 0x2:
+			machine->registers[reg1] &= machine->registers[reg2];
+			break;
+		
+		// VX ^= VY (8XY3)
+		case 0x3:
+			machine->registers[reg1] ^= machine->registers[reg2];
+			break;
+		
+		// VX += VY with carry (8XY4)
+		case 0x4:
+			// VF is 0 until an overflow is detected
+			machine->registers[0xF] = 0;
+
+			// Do the addition
+			result = machine->registers[reg1] + machine->registers[reg2];
+
+			// Set reg1 to 8 bit result
+			machine->registers[reg1] = LO_BYTE(result);
+
+			// If the result has overflown, set VF to 1
+			if(HI_BYTE(result))
+			{
+				machine->registers[0xF] = 1;
+			}
+
+			break;
+		
+		// VX -= VY  (8XY5)
+		case 0x5:
+			// VF is 1 until an underflow is detected
+			machine->registers[0xF] = 1;
+
+			// Do the subtraction
+			machine->registers[reg1] -= machine->registers[reg2];
+
+			// If an underflow is detected, set VF to 0
+			if(machine->registers[reg1] < machine->registers[reg2])
+			{
+				machine->registers[0xF] = 0;
+			}
+
+			break;
+		
+		// VX = VY >> 1 (8XY6)
+		case 0x6:
+			machine->registers[reg1] = machine->registers[reg2] >> 1;
+			break;
+		
+		// VX = VY - VX  (8XY7)
+		case 0x7:
+			// VF is 1 until an underflow is detected
+			machine->registers[0xF] = 1;
+
+			// Do the subtraction
+			machine->registers[reg1] = machine->registers[reg2] - machine->registers[reg1];
+
+			// If an underflow is detected, set VF to 0
+			if(machine->registers[reg2] < machine->registers[reg1])
+			{
+				machine->registers[0xF] = 0;
+			}
+
+			break;
+		
+		// VX = VY << 1 (8XYE)
+		case 0xE:
+			machine->registers[reg1] = machine->registers[reg2] << 1;
 			break;
 	}
 }
